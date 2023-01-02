@@ -20,7 +20,7 @@ void sort(int a[], int l, int r)
 		{
 			t = a[i];
 			a[i] = a[j];
-			a[j] = b;
+			a[j] = t;
 		}
 	}
 	sort(a, l, j);

@@ -5,16 +5,17 @@ struct list
 	int data;
 	struct list* ne;
 };
-//ÔÚÄ©Î²²åÉÏÒ»¸öÊı×Ö£¬È»ºó·µ»ØÍ·½Úµã
-struct  list* headin(struct list *head) //ÕâÀïÒª×¢Òâ½á¹¹ÌåÖ¸Õëº¯ÊıµÄÒıÓÃ£¬ĞèÒªÔÚlistºóÃæ¼ÓÉÏĞÇºÅ¡®*¡¯¡£
+//æˆ‘ä»¬åœ¨è®¾è®¡ç¨‹åºä¹‹å‰ï¼Œè¦å…ˆè®°å¿†æ— è®ºæ˜¯åˆ é™¤æ“ä½œï¼Œè¿˜æ˜¯å»ºç«‹æ“ä½œï¼Œéƒ½éœ€è¦å»ºç«‹ä¸¤ä¸ªæŒ‡é’ˆï¼Œ*prå’Œ*p.
+//åœ¨æœ«å°¾æ’ä¸Šä¸€ä¸ªæ•°å­—ï¼Œç„¶åè¿”å›å¤´èŠ‚ç‚¹
+struct  list* headin(struct list *head) //è¿™é‡Œè¦æ³¨æ„ç»“æ„ä½“æŒ‡é’ˆå‡½æ•°çš„å¼•ç”¨ï¼Œéœ€è¦åœ¨liståé¢åŠ ä¸Šæ˜Ÿå·â€˜*â€™ã€‚
 {
 	struct list * p = NULL, *pr = head;
 	p = (struct list*)malloc(sizeof(struct list));
 	scanf_s("%d", &p->data);
-	if (head == NULL) head = p;  //ÈôÔ­Á´±íÎª¿ÕÁ´±í£¬ÄÇÃ´head=p£¬ÕâÀïµÄhead¾ÍÊÇp£¬pµÄdata¾ÍÊÇheadµÄ£¬headÕâ¸öÍ·½Úµã´æÁËÊı¾İ
+	if (head == NULL) head = p;  //è‹¥åŸé“¾è¡¨ä¸ºç©ºé“¾è¡¨ï¼Œé‚£ä¹ˆhead=pï¼Œè¿™é‡Œçš„headå°±æ˜¯pï¼Œpçš„dataå°±æ˜¯headçš„ï¼Œheadè¿™ä¸ªå¤´èŠ‚ç‚¹å­˜äº†æ•°æ®
 	else
 	{
-		while (pr->ne != NULL) pr=pr->ne;//Èç¹ûÔ­Á´±í²»ÊÇ¿ÕÁ´±í£¬ÄÇÃ´¾Í±éÀúµ½Õâ¸öÁ´±íµÄ×îºóÒ»¸ö½ÚµãÎ»ÖÃ£¬ÅĞ¶ÏÌõ¼ş¾ÍÊÇ×îºóÒ»¸ö½ÚµãµÄneÖ¸ÕëÖ¸ÏòNULL¡£
+		while (pr->ne != NULL) pr=pr->ne;//å¦‚æœåŸé“¾è¡¨ä¸æ˜¯ç©ºé“¾è¡¨ï¼Œé‚£ä¹ˆå°±éå†åˆ°è¿™ä¸ªé“¾è¡¨çš„æœ€åä¸€ä¸ªèŠ‚ç‚¹ä½ç½®ï¼Œåˆ¤æ–­æ¡ä»¶å°±æ˜¯æœ€åä¸€ä¸ªèŠ‚ç‚¹çš„neæŒ‡é’ˆæŒ‡å‘NULLã€‚
 		pr->ne = p;
 	}
 	p->ne = NULL;
@@ -30,11 +31,11 @@ void print(struct list* head)
 	}
 	printf("\n");
 }
-//É¾³ıÓëxÏàÍ¬µÄ½Úµã
+//åˆ é™¤ä¸xç›¸åŒçš„èŠ‚ç‚¹
 struct list *del(struct list* head, int x)
 {	
 	struct list* p = head;
-	struct list* pr = head;  //pr¾ÍÊÇpreviousÊÇ¹ıÈ¥µÄ£¬ÒâË¼ÊÇ´æ´¢pµÄÉÏÒ»¸ö½Úµã£¬
+	struct list* pr = head;  //prå°±æ˜¯previousæ˜¯è¿‡å»çš„ï¼Œæ„æ€æ˜¯å­˜å‚¨pçš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹ï¼Œ
 	while (x != p->data && p->ne != NULL)
 	{
 		pr = p;
@@ -42,7 +43,7 @@ struct list *del(struct list* head, int x)
 	}
 	if (x == p->data)
 	{
-		if (p == head) head = p->ne;//ÒòÎªÕâÀï¸Ä±äÁËheadËùÒÔÃ»°ì·¨£¬ÈÔÈ»Òª×ö³É´«Öµº¯Êı.
+		if (p == head) head = p->ne;//å› ä¸ºè¿™é‡Œæ”¹å˜äº†headæ‰€ä»¥æ²¡åŠæ³•ï¼Œä»ç„¶è¦åšæˆä¼ å€¼å‡½æ•°.
 		else pr->ne = p->ne;
 		free(p);
 	}
@@ -53,12 +54,12 @@ int main()
 {
 	struct list* head = NULL;
 	struct list* tail = NULL;
-	//ÊäÈën£¬´ú±íÄãÏëÒª´´½¨Ò»¸ö´Ó1µ½nµÄÁ´±í
+	//è¾“å…¥nï¼Œä»£è¡¨ä½ æƒ³è¦åˆ›å»ºä¸€ä¸ªä»1åˆ°nçš„é“¾è¡¨
 	int n;
 	scanf_s("%d", &n);
 	for (int i = 1; i <= n; i++) head=headin(head);
 	print(head);
-	//¼ÙÉèÎÒÃÇĞèÒªÉ¾³ı1
+	//å‡è®¾æˆ‘ä»¬éœ€è¦åˆ é™¤1
 	head=del(head, 1);
 	print(head);
 	return 0;
